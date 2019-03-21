@@ -11,8 +11,7 @@ import {
   SectionList,
   View,
   TouchableHighlight,
-  ToastAndroid,
-  Image,
+  ImageBackground,
 } from 'react-native';
 import Beacons from 'react-native-beacons-manager';
 import { Avatar } from 'react-native-elements';
@@ -58,7 +57,7 @@ export type State = {
 //  const UUID         = '7b44b47b-52a1-5381-90c2-f09b6838c5d4';
 const IDENTIFIER = '123456';
 const TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
-const UUID = '7b44b47b-52a1-5381-90c2-f09b6838c5d4';
+const UUID = 'B9407F30-F5F8-466E-AFF9-25556B57FE6D';
 
 const RANGING_TITLE = 'ranging beacons in the area:';
 const RANGING_SECTION_ID = 1;
@@ -193,6 +192,7 @@ class BeaconsDemo extends Component<Props, State> {
     );
   }
 
+  /** Remove this section to test for killed app detection */
   componentWillUnMount() {
     this.stopRangingAndMonitoring();
     // remove monitiring events we registered at componentDidMount::
@@ -208,7 +208,7 @@ class BeaconsDemo extends Component<Props, State> {
     console.log('beacons: ', beacons);
 
     return (
-      <Image
+      <ImageBackground
         style={styles.backgroundImage}
         resizeMode="center"
         source={require('./bluetooth-300-300-opacity-45.png')}
@@ -241,7 +241,7 @@ class BeaconsDemo extends Component<Props, State> {
             // shouldItemUpdate={this.shouldItemUpdate}
           />
         </View>
-      </Image>
+      </ImageBackground>
     );
   }
   // #endregion
@@ -378,16 +378,9 @@ class BeaconsDemo extends Component<Props, State> {
       await this.stopRangingAndMonitoring();
       await Beacons.addIBeaconsDetection();
       await this.startRangingAndMonitoring();
-      ToastAndroid.showWithGravity(
-        'add IBeacon detection',
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER,
-      );
+      console.log('add IBeacon detection');
     } catch (error) {
-      ToastAndroid.show(
-        `Error: add IBeacon detection failed: ${error.message}`,
-        ToastAndroid.SHORT,
-      );
+      console.log(error.message);
     }
   };
 
@@ -396,16 +389,9 @@ class BeaconsDemo extends Component<Props, State> {
       await this.stopRangingAndMonitoring();
       await Beacons.removeIBeaconsDetection();
       await this.startRangingAndMonitoring();
-      ToastAndroid.showWithGravity(
-        'removed IBeacon detection',
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER,
-      );
+      console.log('remove IBeacon detection');
     } catch (error) {
-      ToastAndroid.show(
-        `Error: remove IBeacon detection failed: ${error.message}`,
-        ToastAndroid.SHORT,
-      );
+      console.log(error.message);
     }
   };
 }

@@ -325,8 +325,6 @@ public class BeaconsAndroidModule extends ReactContextBaseJavaModule implements 
             Log.i(LOG_TAG, "regionDidEnter");
 
             sendEvent(mReactContext, "regionDidEnter", createMonitoringResponse(region));
-
-            wakeUpAppIfNotRunning();
         }
 
         @Override
@@ -393,10 +391,6 @@ public class BeaconsAndroidModule extends ReactContextBaseJavaModule implements 
             Log.d(LOG_TAG, "rangingConsumer didRangeBeaconsInRegion, beacons: " + beacons.toString());
             Log.d(LOG_TAG, "rangingConsumer didRangeBeaconsInRegion, region: " + region.toString());
             sendEvent(mReactContext, "beaconsDidRange", createRangingResponse(beacons, region));
-
-            if (!beacons.isEmpty()) {
-                wakeUpAppIfNotRunning();
-            }
         }
     };
 

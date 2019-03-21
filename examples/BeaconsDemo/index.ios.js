@@ -42,7 +42,7 @@ export type State = {
 // #region constants
 
 // uuid of YOUR BEACON (change to yours)
-const UUID = '7b44b47b-52a1-5381-90c2-f09b6838c5d4';
+const UUID = 'B9407F30-F5F8-466E-AFF9-25556B57FE6D';
 const IDENTIFIER = '123456';
 const TIME_FORMAT = 'HH:mm:ss';
 const EMPTY_BEACONS_LISTS = {
